@@ -1,0 +1,27 @@
+
+.cont {
+    width: 350px;
+    float: left; 
+    margin-right: 25px;
+    height: 400px;
+    
+}
+.grid{ 
+    margin-left: 35px;
+    margin-right: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 10px; 
+    font-size: 1rem;
+    border: solid 1px rgb(15, 9, 9);
+    box-shadow: 10px 10px 10px 10px aliceblue;
+}
+p {
+    font-weight: lighter;
+    color: rgb(238, 168, 222);
+    padding-bottom: 50px;
+    font-size: medium;
+    line-height: normal;
+}
+

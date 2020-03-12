@@ -1,55 +1,44 @@
-.wrapper {
-    color: rgb(16, 149, 238);
-    text-shadow: 2px 2px 4px rgba(23, 7, 82, 0.829);
-    font-size: 25px;
-    font-weight: bolder;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 30px;
-    margin-left: 100px;
-    margin-right: 200px;
+label {
+    color: rgb(188, 226, 220);
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: left;
+    width: 200px;
+    float: left;
+    clear: left;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    text-shadow: 5px 5px 5px black;
+  }
+.wrapper{
+    padding: 50px;
+    position: relative; 
 }
-hr {
-    margin-bottom: 15px;
-    background-color: #08080834;
-    height: 2px;
-    border: 10;
-    }
-h2 {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(189, 236, 69, 0.829);
-    font-weight: bolder;
-    font-style: italic;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.forms{
-    background-color: rgb(192, 201, 206);
-    border: 2px solid rgb(11, 158, 90);
-    border-radius: 5px;
-    height: 20px;
+input, textarea, select  {
+    padding: 12px 15px;
+    height: 10%; 
+    background: #a09e9e;
+    color: rgb(29, 27, 27);  
+    font-weight: 300;
+    font-size: 15px;
     width: 50% !important;
-    font-family: sans-serif;
+}
+
+input:focus,
+.form2:focus {
+    border: 2px solid #ec1717;
+    background: #f3f1f1;
 }
 .form3{
-    background-color: rgb(138, 226, 138);
-    color: black;
-    font-size: 20px;
-    width: 120px;
-    margin-left: 200px;
-    padding: 10px;
-    font-family: sans-serif;
-    font-weight: bolder;
-    border-radius: 5px;
-    border: 2px solid rgb(11, 158, 90);
-    font-style: italic;
+    margin-left: 350px;
+    width: 30%;
+    border-radius: 5px solid grey ;
+    padding: 12px 15px;
+    height: 10%; 
+    background: #262d2e;
+    color: rgb(247, 240, 240);  
+    font-weight: 300;
+    font-size: 15px;
 }
-.form2{
-    height: 80px;
-    width: 50% !important;
-    background-color: rgb(192, 201, 206);
-    border-radius: 10px;
-    font-family: sans-serif;
-    border: 2px solid rgb(11, 158, 90);
-}
-.form1{
-    border: 2px solid rgb(11, 158, 90);
-}
+

@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import { Route, NavLink, BrowserRouter, Switch } from "react-router-dom";
 import Home from './components/Home';
 import Movies from './components/movies';
-import Movie from './components/moviePage';
+import Movie from './components/movieDetails';
 import CreateMovie from './components/addMovie';
+import editMovie from './components/editMovie';
 
-
-class App extends Component {
+export default class App extends Component {
   render() {
+     console.log(this.props.allParams);
+
     return (
      <BrowserRouter>
      <div>
       <div className="cat">
           <h1>Thusiast Movie Library</h1>
-      </div>
 
+      </div>
         <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/movies">Popular Movies</NavLink></li>
@@ -23,10 +25,11 @@ class App extends Component {
 
        <div className="content">
        <Switch>
-       <Route exact path="/" component={Home} />
-       <Route exact path="/movies" component={Movies} />
-       <Route exact path="/movies/:id" component={Movie} />
-       <Route exact path="/addMovie" component={CreateMovie} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/movies" component={Movies} />
+            <Route path="/movies/:movieId" component={Movie} />
+            <Route path="/editMovie/:movieId" component={editMovie} />
+            <Route path="/addMovie" component={CreateMovie} />
        </Switch>
        </div>
        </div>
@@ -35,5 +38,5 @@ class App extends Component {
   }
 }
 
-export default App;
+
 

@@ -1,32 +1,28 @@
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Movies.css';
-
+import {Link } from 'react-router-dom';
 
 export default class Movies extends Component {
   constructor (props) {
     super (props);
 
       this.state = {
-        isLoading: true,
-        movies: [],
-        showMovie: {},
-        error: null
-      };
+             isLoading: true,
+             movies: [],
+             error: null
+      };  
   }
 
   componentDidMount () {
     this.setState ({ isLoading:true });
       axios.get(`https://movi-lib.herokuapp.com/api/v1/movies`)
           .then(res =>  {  
-              this.setState ({ movies: res.data.data,
-                               isLoading: false })
-   }).catch(error => 
-         this.setState ({ error, isLoading:false }));
+              this.setState ({ movies: res.data.data, isLoading: false })})
+              .catch(error => this.setState ({ error, isLoading:false }));
     }
-        
+  
     render () { 
         const {isLoading, movies} = this.state;
             if (isLoading) {
@@ -34,24 +30,26 @@ export default class Movies extends Component {
             }
         
         return ( 
-          <React.Fragment>
+            <React.Fragment>
               <h2>Watch Movies Here</h2>
                   <hr />
           
-           <div className="grid-container">
-              <ul className="rig">
-              {movies.map(movie => (
-                <li><div key={movie.movie_id} id={movie.movie_id}>
-                <Link to={{pathname: `movie/${movie.movie_id}`, query: {id: movie.id}}}>
-                     <img className="cont1" src={movie.imageUrl} alt=" " />
-                     <h3> {movie.title} </h3>
-              </Link></div>
-            </li>
-              ))}
-          </ul>
-          </div>  
-          </React.Fragment> 
+                  <div className="grid-container">
+                  <ul className="rig">
+                        {movies.map(movie => (
+                            <div key={movie._id}>
+                              <li>
+                                  <Link to={`/movies/${movie._id}`}>                           
+                                      <img className="cont1" src={movie.imageUrl} alt=" " />
+                                      <div className="cont2"><h3> {movie.title} </h3></div>
+                                  </Link>        
+                              </li>
+                          </div>  
+                        ))}
+                  </ul>
+                  </div>  
+            </React.Fragment> 
         );
     }
-  }
+}
 

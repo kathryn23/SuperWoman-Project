@@ -1,45 +1,45 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import './addMovie.css';
+import {updateMovie} from './delMovie';
+import './movieDetails.css';
 
-export default class CreateMovie extends Component {
-    constructor(props) {
-      super(props);
+export default class Movie extends Component {
+  constructor(props) {
+    super(props);
 
-      this.state = {
-            title: '',
-            director: '',
-            genre:'',
-            releaseDate: '',
-            description: '',
-            imageUrl: '',
-          
-        };
-         this.changeHandler = this.changeHandler.bind(this);
-      this.submitHandler = this.submitHandler.bind(this);
-     }
+    this.state = {
+          movieInfo: {},
+      };
+    }
+   
+  changeHandler = (e) => {
+       this.setState({ [e.target.name]: e.target.value });
+       }
 
-    changeHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+  submitHandler = (e) => {
+    e.preventDefault();
+      const { movieId, ...newData } = this.state.movieInfo;
+        console.log (newData);
+           updateMovie(newData, this.props.params.movieId);
+  }
+  
+  componentDidMount () { 
+    const {movieId} = this.props.match.params.movieId;
+      this.moviePage(movieId);
     }
 
-    submitHandler = (e) => {  
-         e.preventDefault();
-         //this.props.history.push('/movies');
-          console.log(this.state)
-     
-    axios.post(`https://movi-lib.herokuapp.com/api/v1/movies`, this.state)
-      .then(res => { console.log(res)
-         alert("Movie has been Created!")
-         window.loction.href=`/movies`
-       })
-       .catch(error => { console.log(error)
-       })
-      }
- 
-    render() {
-       const {title, director, imageUrl, genre, releaseDate,description} = this.state;
+  moviePage = (movieId) => {   
+    axios.get(`https://movi-lib.herokuapp.com/api/v1/movies/${movieId}`)
+       .then(res => { console.log(res);
+           this.setState ({ movieInfo: res.data.data })
+             alert("Movie has been Created!")
+               window.loction.href=`/movies`
+            }).catch ( error => console.log(error)
+          )}
+
+  render() {
+       const {title, director, genre, releaseDate,description, imageUrl} = this.state;
      
       return (
          <React.Fragment>
@@ -71,19 +71,19 @@ export default class CreateMovie extends Component {
                 </select>
             </div><br />
             <div>
-                <label htmlFor="releasDate"> Release Date: </label><br />
+                <label htmlFor="releaseDate"> Release Date: </label><br />
                 <input type="date" name="releaseDate" value={releaseDate} onChange={this.changeHandler} className="forms" />
             </div><br />
             <div>
                 <label htmlFor="description"> Description: </label><br />
                 <textarea name="description" value={description} onChange={this.changeHandler} className="form2" placeholder="description"/>
             </div><br />
+             <div>
+                 <label htmlFor="imageUrl">  Poster Image:: </label><br />               
+                 <input type="file" name="file" value={imageUrl} onChange={this.changeHandler} className="form1" /> 
+             </div><br />
             <div>
-                <label htmlFor="imageUrl">  Poster Image:: </label><br />               
-                <input type="file" name="file" value={imageUrl} onChange={this.changeHandler} className="form1" /> 
-            </div><br />
-              <div>
-                <button type="submit" className="form3"> SEND DATA </button>
+                <button type="submit" className="form3" > update</button>
             </div>
           </form>              
           </div>
@@ -91,3 +91,4 @@ export default class CreateMovie extends Component {
         )
     }
 }
+

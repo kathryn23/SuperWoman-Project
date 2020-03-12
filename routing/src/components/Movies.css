@@ -17,10 +17,12 @@ ul.rig {
     margin-left: 10px;
   }
 ul.rig li {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     padding: 5px; 
     margin: 0px 0px 20px 10px;
-    border: 5px solid black;
+    border: 3px solid black;
     font-size: 16px;
     font-size: 1rem;
     vertical-align: top;
